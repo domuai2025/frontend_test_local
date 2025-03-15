@@ -1,7 +1,11 @@
-import HomePage from "./homeUI";
+import dynamic from "next/dynamic";
 
-export const dynamic = "force-static";
+const CheerfulDashboard = dynamic(() => import("@/components/src/main"), { ssr: false });
 
-export default function Home() {
-	return <HomePage />;
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <CheerfulDashboard />
+    </div>
+  );
 }
