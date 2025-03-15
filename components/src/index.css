@@ -1,0 +1,257 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 198 100% 56%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Darker black background */
+    --background: 220 10% 4%;
+    --foreground: 210 40% 98%;
+
+    /* Card and UI elements */
+    --card: 222 14% 5%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 14% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Bright blue as primary, from reference */
+    --primary: 190 100% 50%;
+    --primary-foreground: 222 14% 5%;
+
+    /* Darker UI elements */
+    --secondary: 215 25% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 20% 70%;
+
+    --accent: 215 25% 12%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 25% 12%;
+    --input: 215 25% 12%;
+    --ring: 190 100% 50%;
+
+    /* Sidebar styles with blue accents */
+    --sidebar-background: 220 10% 4%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 25% 12%;
+    --sidebar-ring: 190 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px rgba(30, 176, 255, 0.3), 0 0 10px rgba(30, 176, 255, 0.2);
+    }
+    to {
+      box-shadow: 0 0 10px rgba(30, 176, 255, 0.5), 0 0 20px rgba(30, 176, 255, 0.3);
+    }
+  }
+
+  .tech-pattern {
+    background-image: 
+      radial-gradient(rgba(30, 176, 255, 0.1) 2px, transparent 2px),
+      radial-gradient(rgba(30, 176, 255, 0.05) 2px, transparent 2px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(30, 176, 255, 0.2);
+  }
+  
+  .pricing-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .pricing-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(30, 176, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .pricing-card:hover::after {
+    opacity: 1;
+  }
+  
+  .pricing-card-popular {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .pricing-card-popular::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .pricing-card-popular:hover::after {
+    opacity: 1;
+  }
+
+  .animated-border {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+  }
+  
+  .animated-border-blue:hover::before {
+    animation: border-glow-blue 1.5s linear infinite;
+    border-color: rgba(30, 176, 255, 0.5);
+  }
+  
+  .animated-border-purple:hover::before {
+    animation: border-glow-purple 1.5s linear infinite;
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+  
+  @keyframes border-glow-blue {
+    0% {
+      box-shadow: 0 0 5px rgba(30, 176, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(30, 176, 255, 0.5), 0 0 15px rgba(30, 176, 255, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(30, 176, 255, 0.3);
+    }
+  }
+  
+  @keyframes border-glow-purple {
+    0% {
+      box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 15px rgba(139, 92, 246, 0.3);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+    }
+  }
+}

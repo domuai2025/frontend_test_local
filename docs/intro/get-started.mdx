@@ -1,0 +1,65 @@
+---
+title: Your docs
+description: Help me launch
+---
+
+This guide is found `/docs/intro/get-started.mdx`
+
+## Step 1: Prerequisites
+
+Make sure you have the following installed on your machine.
+
+- [node.js](https://nodejs.org/en/) (v20 or higher)
+- [git](https://git-scm.com/)
+- [docker](https://www.docker.com/)
+- [pnpm](https://pnpm.io/) (recommended) or [npm](https://www.npmjs.com/)
+- (optional) [Cursor](https://www.cursor.com/) (recommended) or [VSCode](https://code.visualstudio.com/)
+
+Once you have all these installed and running on your machine, you can proceed to the next step.
+
+## Step 2: Code download and setup
+
+Open your terminal on macOs (command + space and type `terminal`)
+
+Paste the following command to download repository
+
+```
+git clone git@github.com:rokanost/appliful.git my-startup-name
+```
+
+Navigate to the project directory
+
+```
+cd my-startup-name
+```
+
+Remove remote origin
+
+```
+git remote remove origin
+```
+
+Install dependencies
+
+```
+pnpm install
+```
+
+## Step 3: Config
+
+Run the setup script to create `.env.local` file and prefill local Supabase keys.
+It will also start a local Supabase instance.
+
+```
+chmod +x setup.sh && ./setup.sh
+```
+
+## Step 4: Run
+
+```
+pnpm run dev
+```
+
+Congrats! Your app is now running 🎉
+
+Open http://localhost:3000 in your browser to see it.

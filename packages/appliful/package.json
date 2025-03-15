@@ -1,0 +1,32 @@
+{
+	"name": "appliful",
+	"version": "1.0.0",
+	"description": "A CLI tool that prints the provided text",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": {
+		"appliful": "./dist/cli.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"prepublishOnly": "pnpm run build"
+	},
+	"keywords": [
+		"cli",
+		"text"
+	],
+	"author": "",
+	"license": "ISC",
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.5.0",
+		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.25.0",
+		"commander": "^12.0.0",
+		"dotenv": "^16.4.5"
+	}
+}

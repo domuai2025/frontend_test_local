@@ -1,0 +1,105 @@
+---
+title: Useful commands
+description: Useful CLI commands
+---
+
+## Supabase CLI Setup (macOs) (optional)
+
+Install the CLI with [Homebrew](https://brew.sh/)
+
+```
+brew install supabase
+```
+
+## Supabase Commands
+
+You can either use preset commands `pnpm run supabase:<command>` or call supabase directly if you have CLI installed `supabase <command>`.
+
+### Start Supabase
+
+```
+pnpm run supabase:start
+```
+
+### Stop Supabase
+
+```
+pnpm run supabase:stop
+```
+
+### Generate TypeScript Types
+
+Whenever you make changes to your database schema, you need to regenerate the types.
+
+```
+pnpm run supabase:types
+```
+
+This will generate the types based on your Supabase schema and save them to `types/db.ts`.
+
+### Restart Supabase
+
+If you make changes to config.toml you need to restart supabase for the changes to take effect.
+
+```
+pnpm run supabase:restart
+```
+
+Stops and then starts the local Supabase development environment.
+
+### Reset Supabase Database
+
+Useful if you want to reset the database to its initial state.
+Wipes the database and runs the seed file and migrations.
+
+```
+pnpm run supabase:reset
+```
+
+### Check Supabase Status
+
+Displays the current status of the local Supabase services.
+
+```
+pnpm run supabase:status
+```
+
+### Link Supabase Project
+
+Links the local project to a remote Supabase project.
+
+```
+pnpm run supabase:link
+```
+
+### Generate Migration
+
+```
+pnpm run supabase:generate-migration
+```
+
+Creates a new migration file based on the differences between your local database and the current schema.
+
+### Generate Seed Data
+
+```
+pnpm run supabase:generate-seed
+```
+
+Dumps the current database data to a seed file at `supabase/seed.sql`.
+
+### Push Database Changes
+
+```
+pnpm run supabase:push
+```
+
+Applies local schema changes to the remote Supabase database.
+
+### Pull Database Changes
+
+```
+pnpm run supabase:pull
+```
+
+Fetches the latest schema changes from the remote Supabase database to your local environment.

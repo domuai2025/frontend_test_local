@@ -1,0 +1,74 @@
+---
+title: 🖥️ Working with Supabase
+description: Modifying the database schema
+---
+
+## Supabase files
+
+Supabase files can be found in root `/supabase`
+
+Configuration file for the local Supabase setup. `/supabase/config.toml`
+
+## Modifying the Database Schema
+
+Most common task I found doing is modifying the schema and generating types.
+
+### 1. Create a new migration with command
+
+```
+pnpm run supabase:generate-migration name_of_migration
+```
+
+This generates a migration file inside directory. `/supabase/migrations/`
+
+### 2. Modify newly created migration
+
+Let's say you wanted to create a new table called `ai_models`.
+Locate and edit the new file in directory e.g. `20240501120000_name_of_migration.sql`
+
+```
+-- 20240501120000_name_of_migration.sql
+
+CREATE TABLE ai_models (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name TEXT NOT NULL,
+    provider TEXT NOT NULL,
+    user_id UUID NOT NULL REFERENCES auth.users
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
+
+-- Enable Row Level Security
+ALTER TABLE ai_models ENABLE ROW LEVEL SECURITY;
+
+-- Create a policy for select (read) operations
+CREATE POLICY "Allow read access for all users" ON ai_models
+    FOR SELECT USING (true);
+
+-- Create a policy for insert operations (only authenticated users can insert)
+CREATE POLICY "Allow insert for authenticated users" ON ai_models
+    FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+
+-- Create policies for update and delete (only allow for the user who created the record)
+CREATE POLICY "Allow update for record owners" ON ai_models
+    FOR UPDATE USING (auth.uid() = user_id);
+
+CREATE POLICY "Allow delete for record owners" ON ai_models
+    FOR DELETE USING (auth.uid() = user_id);
+
+
+```
+
+### 3. Apply migration
+
+```
+pnpm run supabase:migrate-up
+```
+
+### 4. Regenerate types for Typescript
+
+```
+pnpm run supabase:types
+```
+
+Well done! You've just created a new table and generated types for it.
